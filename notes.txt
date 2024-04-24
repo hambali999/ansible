@@ -1,0 +1,53 @@
+Here's a breakdown of commonly used Ansible terms and options:
+
+1. --check (or --dry-run or -C):
+    - Simulates the execution of a playbook without making actual changes.
+    - Shows what changes would be made, highlighting additions, deletions, and modifications.
+
+2. --check-syntax (or -s):
+    - Verifies the syntax of a playbook or role without executing it.
+    - Checks for YAML syntax errors, invalid tasks, and incorrect module usage.
+
+3. -i (or --inventory):
+    - Specifies the inventory file or host list to use for the playbook.
+    - Defines which hosts or groups to target for the playbook execution.
+
+4. -l (or --limit):
+    - Limits the execution of a playbook to a specific subset of hosts or groups.
+    - Useful for testing or targeting a specific part of the inventory.
+
+5. -t (or --tags):
+    - Runs only the tasks with the specified tags.
+    - Allows selective execution of tasks based on tags.
+
+6. -v (or --verbose):
+    - Increases the verbosity of Ansible's output.
+    - Shows more detailed information about the execution process.
+
+7. --diff:
+    - Shows the differences between the current state and the desired state.
+    - Highlights changes that would be made, similar to the diff command.
+
+8. --forks (or -f):
+    - Specifies the number of parallel processes to use for task execution.
+    - Controls how many hosts are executed simultaneously.
+
+9. --module-path (or -M):
+    - Specifies the path to additional Ansible modules.
+    - Allows using custom or third-party modules.
+
+10. ansible-playbook:
+    - The command used to execute Ansible playbooks.
+    - Takes the playbook file as an argument, along with optional flags and options.
+
+11. --lint: ansible-lint 
+--lint (or --lint-target) is used to validate the correctness and syntax of Ansible playbooks, roles, and tasks. It checks for:
+
+
+*** the 'become' is a keyword that allows a task to be executed with elavated privileges, such as root or a specific user.
+- name: 'Execute a command on node02;
+  hosts: node02
+  become: yes
+  tasks:
+    - name: 'Task to display hosts file on node02'
+      command: cat /etc/hosts
