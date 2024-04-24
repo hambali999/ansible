@@ -1,0 +1,6 @@
+---
+- name: Add computers
+  win_domain_computer:
+    name: "{{ item.name }}"
+    state: present
+  loop: "{{ computers }}"

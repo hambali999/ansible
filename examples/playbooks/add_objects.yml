@@ -1,0 +1,8 @@
+---
+- name: Add objects to Windows Active Directory
+  hosts: domain_controllers
+  gather_facts: false
+  roles:
+    - add_users
+    - add_computers
+    - add_groups

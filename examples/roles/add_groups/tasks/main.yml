@@ -1,0 +1,6 @@
+---
+- name: Add groups
+  win_domain_group:
+    name: "{{ item.name }}"
+    state: present
+  loop: "{{ groups }}"

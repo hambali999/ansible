@@ -1,0 +1,6 @@
+---
+- name: Join computers to Windows Active Directory domain
+  hosts: member_clients
+  gather_facts: false
+  roles:
+  - join_domain

@@ -1,0 +1,6 @@
+---
+- name: Join domain
+  hosts: domain_join
+  become: true
+  roles:
+    - domain_join

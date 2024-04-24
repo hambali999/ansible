@@ -1,0 +1,10 @@
+---
+- name: Add users
+  win_domain_user:
+    username: "{{ item.username }}"
+    firstname: "{{ item.firstname }}"
+    lastname: "{{ item.lastname }}"
+    email: "{{ item.email }}"
+    password: "{{ item.password }}"
+    state: present
+  loop: "{{ users }}"

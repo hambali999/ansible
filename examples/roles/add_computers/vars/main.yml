@@ -1,0 +1,4 @@
+---
+computers:
+  - name: 'win-client1'
+  - name: 'win-client2'

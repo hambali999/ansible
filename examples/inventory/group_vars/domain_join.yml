@@ -1,0 +1,8 @@
+
+---
+service: "m"
+project_number: "7"
+env: "d"
+domain_to_join: "(link unavailable)"
+username: "domainjoinadmin"
+ou_path: "OU=testOU; DC=domain; DC=Domain; DC=com"
