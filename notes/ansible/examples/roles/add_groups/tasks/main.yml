@@ -1,0 +1,6 @@
+---
+- name: Add groups
+  microsoft.ad.computer:
+    name: "{{ item.name }}"
+    state: present
+  loop: "{{ groups }}"

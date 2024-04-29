@@ -1,0 +1,10 @@
+---
+dns_domain_name: devsecops.com.gov.sg
+domain_admin_user: Administrator
+domain_admin_password: Password123
+service: "m"
+project_number: "7"
+env: "d"
+domain_to_join: devsecops.com.gov.sg
+username: "domainjoinadmin"
+ou_path: "OU=TESTPROJ3-DEV; OU=TESTPROJ3; OU=devvcloud; DC=devvcloud; DC=gov;"

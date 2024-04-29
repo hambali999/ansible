@@ -1,0 +1,68 @@
+
+---
+- name: Manage Active Directory objects
+  hosts: windows_hosts
+  become: yes
+
+  tasks:
+  - name: Ensure existence of Windows domain
+    microsoft.ad.domain:
+      name: "example.local"
+      state: present
+
+  - name: Add domain controller
+    microsoft.ad.domain_controller:
+      name: "dc01"
+      state: present
+      domain: "example.local"
+
+  - name: Add group
+    microsoft.ad.group:
+      name: "MyGroup"
+      state: present
+      scope: "global"
+      domain: "example.local"
+
+  - name: Add user
+    microsoft.ad.user:
+      name: "John Doe"
+      state: present
+      domain: "example.local"
+      password: "P@ssw0rd"
+      groups:
+        - "MyGroup"
+
+  - name: Add computer
+    microsoft.ad.computer:
+      name: "win-client1"
+      state: present
+      domain: "example.local"
+
+  - name: Join computer to domain
+    ansible.windows.win_domain_membership:
+      name: "win-client1"
+      state: domain
+      domain: "example.local"
+      username: "Administrator"
+      password: "P@ssw0rd"
+
+  - name: Add local group
+    ansible.windows.win_group:
+      name: "LocalGroup"
+      state: present
+
+  - name: Add user to local group
+    ansible.windows.win_group_membership:
+      name: "John Doe"
+      group: "LocalGroup"
+      state: present
+
+  - name: Add local user
+    ansible.windows.win_user:
+      name: "LocalUser"
+      state: present
+      password: "P@ssw0rd"
+
+- name: reboot host after joining workgroup
+  ansible.windows.win_reboot:
+  when: workgroup_res.reboot_required

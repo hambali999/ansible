@@ -1,0 +1,6 @@
+---
+- name: Add computers
+  microsoft.ad.computer:
+    name: "{{ item.name }}"
+    state: present
+  loop: "{{ computers }}"

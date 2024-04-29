@@ -1,0 +1,22 @@
+---
+- name: join host to domain name with automatic reboot
+  microsoft.ad.membership:
+    dns_domain_name: devcloud.com.sg
+    hostname: mydomainclient
+    domain_admin_user: testguy@ansible
+    domain_admin_password: password123!
+    domain_ou_path: "OU=TESTPROJ3-DEV; OU=TESTPROJ3; OU=devcloud; DC=devcloud; DC=gov; DC=sg"
+    state: domain
+    reboot: true
+
+- name: join host to workgroup with manual reboot in later task
+  microsoft.ad.membership:
+    workgroup_name: mywg
+    domain_admin_user: '{{ win_domain_admin_user }}'
+    domain_admin_password: '{{ win_domain_admin_password }}'
+    state: workgroup
+  register: workgroup_res
+
+- name: reboot host after joining workgroup
+  ansible.windows.win_reboot:
+  when: workgroup_res.reboot_required

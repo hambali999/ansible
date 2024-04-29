@@ -1,0 +1,13 @@
+---
+- name: Join domain
+  microsoft.ad.membership:
+    dns_domain_name: "{{ domain_to_join }}"
+    domain_admin_user: "{{ username }}"
+    domain_admin_password: "{{ domain_admin_password }}"
+    domain_ou_path: "{{ ou_path }}"
+    state: domain
+  register: domain_result
+
+- name: Reboot host
+  win_reboot:
+    when: domain_result.changed
